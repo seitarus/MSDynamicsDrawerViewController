@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, MSDynamicsSectionType) {
 
 - (void)sliderDidUpdateValue:(UISlider *)slider
 {
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
     switch (slider.tag) {
         case MSDynamicsSectionTypeGravityMagnitude:
             dynamicsDrawerViewController.gravityMagnitude = slider.value;
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, MSDynamicsSectionType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MSDynamicsCellReuseIdentifier forIndexPath:indexPath];
     UISlider *slider = (UISlider *)cell.accessoryView;
     if (!slider || ![slider isKindOfClass:[UISlider class]]) {

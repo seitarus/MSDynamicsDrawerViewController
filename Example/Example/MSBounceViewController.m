@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, MSBounceSectionType) {
 
 - (void)sliderDidUpdateValue:(UISlider *)slider
 {
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
     switch (slider.tag) {
         case MSBounceSectionTypeBounceMagnitude:
             dynamicsDrawerViewController.bounceMagnitude = slider.value;
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger, MSBounceSectionType) {
 {
     switch (section) {
         case MSBounceSectionTypeBounce: {
-            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
             NSInteger possibleDrawerDirection = dynamicsDrawerViewController.possibleDrawerDirection;
             __block NSInteger possibleDirectionCount = 0;
             MSDynamicsDrawerDirectionActionForMaskedValues(possibleDrawerDirection, ^(MSDynamicsDrawerDirection maskedValue) {
@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, MSBounceSectionType) {
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.textColor = self.view.window.tintColor;
             
-            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
             NSInteger possibleDrawerDirection = dynamicsDrawerViewController.possibleDrawerDirection;
             __block NSInteger possibleDrawerDirectionRow = 0;
             MSDynamicsDrawerDirectionActionForMaskedValues(possibleDrawerDirection, ^(MSDynamicsDrawerDirection maskedValue) {
@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger, MSBounceSectionType) {
         }
         default: {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MSBounceDynamicsCellReuseIdentifier forIndexPath:indexPath];
-            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
             UISlider *slider = (UISlider *)cell.accessoryView;
             if (!slider || ![slider isKindOfClass:[UISlider class]]) {
                 slider = [UISlider new];
@@ -190,7 +190,7 @@ typedef NS_ENUM(NSInteger, MSBounceSectionType) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
     __block NSInteger possibleDrawerDirectionRow = 0;
     MSDynamicsDrawerDirectionActionForMaskedValues(dynamicsDrawerViewController.possibleDrawerDirection, ^(MSDynamicsDrawerDirection drawerDirection) {
         if (indexPath.row == possibleDrawerDirectionRow) {

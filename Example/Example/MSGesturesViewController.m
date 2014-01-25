@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, MSGesturesSectionType) {
     switch (section) {
         case MSGesturesSectionTypeDragToReveal:
         case MSGesturesSectionTypeTapToClose: {
-            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+            MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
             NSInteger possibleDrawerDirection = dynamicsDrawerViewController.possibleDrawerDirection;
             __block NSInteger possibleDirectionCount = 0;
             MSDynamicsDrawerDirectionActionForMaskedValues(possibleDrawerDirection, ^(MSDynamicsDrawerDirection drawerDirection) {
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, MSGesturesSectionType) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MSGestureDirectionCellReuseIdentifier forIndexPath:indexPath];
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
     NSInteger possibleDrawerDirection = dynamicsDrawerViewController.possibleDrawerDirection;
     __block NSInteger possibleDrawerDirectionRow = 0;
     MSDynamicsDrawerDirectionActionForMaskedValues(possibleDrawerDirection, ^(MSDynamicsDrawerDirection drawerDirection) {
@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, MSGesturesSectionType) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.navigationController.parentViewController;
+    MSDynamicsDrawerViewController *dynamicsDrawerViewController = (MSDynamicsDrawerViewController *)self.parentViewController;
     __block NSInteger possibleDrawerDirectionRow = 0;
     MSDynamicsDrawerDirectionActionForMaskedValues(dynamicsDrawerViewController.possibleDrawerDirection, ^(MSDynamicsDrawerDirection drawerDirection) {
         if (indexPath.row == possibleDrawerDirectionRow) {
