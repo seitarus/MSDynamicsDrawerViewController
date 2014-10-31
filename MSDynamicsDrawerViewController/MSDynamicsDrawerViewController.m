@@ -258,11 +258,11 @@ void MSDynamicsDrawerDirectionActionForMaskedValues(NSInteger direction, MSDynam
     self.paneView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     [self.paneView addObserver:self forKeyPath:NSStringFromSelector(@selector(frame)) options:0 context:NULL];
     
-    self.panePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panePanned:)];
+    /*self.panePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panePanned:)];
     self.panePanGestureRecognizer.minimumNumberOfTouches = 1;
     self.panePanGestureRecognizer.maximumNumberOfTouches = 1;
     self.panePanGestureRecognizer.delegate = self;
-    [self.paneView addGestureRecognizer:self.panePanGestureRecognizer];
+    [self.paneView addGestureRecognizer:self.panePanGestureRecognizer];*/
     
     self.paneTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(paneTapped:)];
     self.paneTapGestureRecognizer.numberOfTouchesRequired = 1;
