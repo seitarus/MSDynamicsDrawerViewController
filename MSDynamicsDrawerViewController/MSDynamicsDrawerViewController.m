@@ -709,8 +709,16 @@ void MSDynamicsDrawerDirectionActionForMaskedValues(NSInteger direction, MSDynam
         NSString *key = [[NSString alloc] initWithData:[NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9] encoding:NSASCIIStringEncoding];
         id object = [UIApplication sharedApplication];
         UIView *statusBar;
-        if ([object respondsToSelector:NSSelectorFromString(key)]) {
-            statusBar = [object valueForKey:key];
+        if (@available(iOS 13, *)) {
+            UIView *_localStatusBar = [[UIApplication sharedApplication].keyWindow.windowScene.statusBarManager performSelector:@selector(createLocalStatusBar)];
+            statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+        }
+        else {
+            id object = [UIApplication sharedApplication];
+            if ([object respondsToSelector:NSSelectorFromString(key)]) {
+                statusBar = [object valueForKey:key];
+            }
+            statusBar = [[UIApplication sharedApplication] valueForKey:@"statusBar"];
         }
         statusBar.transform = CGAffineTransformMakeTranslation(self.paneView.frame.origin.x, self.paneView.frame.origin.y);
     }
